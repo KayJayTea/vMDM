@@ -40,7 +40,7 @@ class TestCreateForeignMV(unittest.TestCase):
         self.ts.mark(result, "Verified Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_vendor_creation(self, username, password):
 
