@@ -43,7 +43,6 @@ class TestCreateDomesticMV(unittest.TestCase):
     @data(("AUTOTEST3", "Psoft1234!"))
     @unpack
     def test_domestic_master_vendor_creation(self, username, password):
-        # Login into PeopleSoft with CREATOR credentials
         self.lp.login(username, password)
         result_1 = self.lp.verify_title()
         self.ts.mark(result_1, "Title is CORRECT")
