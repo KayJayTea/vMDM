@@ -39,11 +39,11 @@ class IdentifyingInformationPage(BasePage):
     def enter_supplier_name(self):
         fake_data = Faker()
         fake_company = fake_data.company()
-        self.sendkeys("TEST_QA_" + fake_company, self._supplier_name_txt)
+        self.sendkeys("TEST_AK_" + fake_company, self._supplier_name_txt)
 
     def enter_supplier_short_name(self):
         random_num = randint(999, 9999)
-        self.sendkeys("QATST_" + (str(random_num)), self._supplier_short_name_txt)
+        self.sendkeys("AKTST_" + (str(random_num)), self._supplier_short_name_txt)
 
     def click_fei_trl_attr_link(self):
         self.element_click(self._fei_trl_attributes_link, locator_type="link")

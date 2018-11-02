@@ -34,15 +34,15 @@ class TestDomesticBV(unittest.TestCase):
         self.sup_xref = SupplierXrefWindow(self.driver)
 
     @pytest.mark.run(order=1)
-    @data(("AUTOTEST3", "wrongpassword"))
+    @data(("AUTOTEST3", "wrongpassword", "login Failed"))
     @unpack
-    def test_invalid_password(self, username, password):
+    def test_invalid_password(self, username, password, message):
         self.lp.login(username, password)
         result = self.lp.verify_login_failed()
-        self.ts.mark(result, "Login Failed!")
+        self.ts.mark(result, message)
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))  # Login into PeopleSoft with CREATOR credentials
+    @data(("AUTOTEST3", "Psoft1234$"))  # Login into PeopleSoft with CREATOR credentials
     @unpack
     def test_domestic_master_and_branch_vendor_creation(self, username, password):
         self.lp.login(username, password)
@@ -61,19 +61,19 @@ class TestDomesticBV(unittest.TestCase):
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ CORPORATE INFORMATION """
-        self.addr.click_add_new_address_btn()
-        self.addr.clean_domestic_us_addresses()
-        self.addr.enter_email_id()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
-
-        """ TRILOGIE PO ADDRESS """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
-        self.addr.enter_email_id()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
+        # """ CORPORATE INFORMATION """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.clean_domestic_us_addresses()
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
+        #
+        # """ TRILOGIE PO ADDRESS """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
 
         """ ADD LOCATIONS """
         # Add a location
@@ -82,11 +82,11 @@ class TestDomesticBV(unittest.TestCase):
 
         # Add Procurement Options
         self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("COD")
+        self.procurement.enter_additional_procurement_options("NET30")
 
         # Add Branch Vendor(s)
         self.loc.click_fei_trilogie_xref_link()
-        self.sup_xref.select_all_accounts()
+        self.sup_xref.select_two_accounts("SANTAROSAWW", "LAHVAC")
 
         """ SAVE RECORD """
         self.loc.click_save_btn()
