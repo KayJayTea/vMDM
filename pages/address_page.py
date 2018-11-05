@@ -9,6 +9,7 @@ from popup_windows.look_up_state_window import LookUpStateWindow
 from utilities.util import Util
 import utilities.custom_logger as cl
 import logging
+import time
 
 STATE_ABBR = ["AK", "AL", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE",
               "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY",
@@ -146,6 +147,7 @@ class AddressPage(BasePage):
 
     def search_for_state(self):
         self.element_click(self._search_state)
+        time.sleep(3)
 
     def enter_random_gb_county(self):
         self.sendkeys(str(choice(GBR_COUNTIES)), self._state)

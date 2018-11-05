@@ -79,10 +79,11 @@ class LookUpStateWindow(BasePage):
             print(e)
 
         self.sendkeys(county, self._state_field)
+        self.util.sleep(3, "for test purposes")
         self.element_click(self._look_up_btn)
-        self.util.sleep(1, "for " + str(county) + " to be found.")
+        self.util.sleep(3, "for " + str(county) + " to be found.")
         self.element_click(self._search_result)
-        self.util.sleep(1, "for popup window to close")
+        self.util.sleep(3, "for popup window to close")
         self.driver.switch_to.default_content()
 
         try:

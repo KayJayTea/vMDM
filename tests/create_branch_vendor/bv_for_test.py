@@ -42,7 +42,7 @@ class TestForeignBV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_and_branch_vendor_creation(self, username, password):
         # Login into PeopleSoft with CREATOR credentials
@@ -62,19 +62,19 @@ class TestForeignBV(unittest.TestCase):
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ FOREIGN CORPORATE INFORMATION """
-        self.addr.click_add_new_address_btn()
-        self.addr.clean_united_kingdom_address()
-        self.addr.enter_email_id()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
-
-        """ FOREIGN TRILOGIE PO ADDRESS """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_foreign_master_vendor_address("Trilogie PO Address", "GBR")
-        self.addr.enter_email_id()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
+        # """ FOREIGN CORPORATE INFORMATION """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.clean_united_kingdom_address()
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
+        #
+        # """ FOREIGN TRILOGIE PO ADDRESS """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.enter_foreign_master_vendor_address("Trilogie PO Address", "GBR")
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
 
         """ ADD LOCATIONS AND BRANCH VENDORS """
         self.addr.click_location_tab()
