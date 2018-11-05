@@ -147,7 +147,7 @@ class AddressPage(BasePage):
 
     def search_for_state(self):
         self.element_click(self._search_state)
-        time.sleep(3)
+        self.util.sleep(3, "the State Lookup Window to Open")
 
     def enter_random_gb_county(self):
         self.sendkeys(str(choice(GBR_COUNTIES)), self._state)
