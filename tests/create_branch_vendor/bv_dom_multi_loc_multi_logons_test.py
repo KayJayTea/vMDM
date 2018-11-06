@@ -42,7 +42,7 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_and_branch_vendor_creation_multi_loc_multi_logon(self, username, password):
         # Login into PeopleSoft with CREATOR credentials
@@ -57,24 +57,24 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
 
         """ REMIT ADDRESS """
         self.id_info.click_address_tab()
-        self.addr.enter_domestic_master_vendor_address("Remit")
+        self.addr.clean_domestic_us_addresses()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ CORPORATE INFORMATION """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_domestic_master_vendor_address("Corporate Info")
-        self.addr.expand_alternate_names()
-        self.addr.enter_pmnt_alt_name_1()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
-
-        """ TRILOGIE PO ADDRESS """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
-        self.addr.enter_pmnt_alt_name_1()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
+        # """ CORPORATE INFORMATION """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.enter_domestic_master_vendor_address("Corporate Info")
+        # self.addr.expand_alternate_names()
+        # self.addr.enter_pmnt_alt_name_1()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
+        #
+        # """ TRILOGIE PO ADDRESS """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
+        # self.addr.enter_pmnt_alt_name_1()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
 
         """ ADD LOCATIONS AND BRANCH VENDORS """
         """ Add LOC_1 """
@@ -89,29 +89,29 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
         self.loc.click_fei_trilogie_xref_link()
         self.sup_xref.select_two_accounts("HOUSTONWW", "LAHVAC")
 
-        """ Add LOC_2 """
-        self.loc.click_add_location_btn()
-        self.loc.add_location("LOC_2", "Remit to LOC_2")
-
-        # Add Procurement Options
-        self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("NET30")
-
-        # Add Branch Vendor(s)
-        self.loc.click_fei_trilogie_xref_link()
-        self.sup_xref.select_two_accounts("OHIOHVAC", "PLYMOUTH")
-
-        """ Add LOC_3 """
-        self.loc.click_add_location_btn()
-        self.loc.add_location("LOC_3", "Remit to LOC_3")
-
-        # Add Procurement Options
-        self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("NET90")
-
-        # Add Branch Vendor(s)
-        self.loc.click_fei_trilogie_xref_link()
-        self.sup_xref.select_two_accounts("SACRAMENTO", "SANTAROSAWW")
+        # """ Add LOC_2 """
+        # self.loc.click_add_location_btn()
+        # self.loc.add_location("LOC_2", "Remit to LOC_2")
+        #
+        # # Add Procurement Options
+        # self.loc.click_procurement_link()
+        # self.procurement.enter_additional_procurement_options("NET30")
+        #
+        # # Add Branch Vendor(s)
+        # self.loc.click_fei_trilogie_xref_link()
+        # self.sup_xref.select_two_accounts("OHIOHVAC", "PLYMOUTH")
+        #
+        # """ Add LOC_3 """
+        # self.loc.click_add_location_btn()
+        # self.loc.add_location("LOC_3", "Remit to LOC_3")
+        #
+        # # Add Procurement Options
+        # self.loc.click_procurement_link()
+        # self.procurement.enter_additional_procurement_options("NET90")
+        #
+        # # Add Branch Vendor(s)
+        # self.loc.click_fei_trilogie_xref_link()
+        # self.sup_xref.select_two_accounts("SACRAMENTO", "SANTAROSAWW")
 
         """ SAVE RECORD """
         self.loc.click_save_btn()

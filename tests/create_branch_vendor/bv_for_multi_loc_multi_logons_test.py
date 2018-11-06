@@ -42,7 +42,7 @@ class TestForeignBVMultiLocationsMultiLogons(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_and_branch_vendor_creation_multi_loc_multi_logon(self, username, password):
         # Login into PeopleSoft with CREATOR credentials
@@ -56,24 +56,21 @@ class TestForeignBVMultiLocationsMultiLogons(unittest.TestCase):
 
         """ FOREIGN REMIT ADDRESS """
         self.id_info.click_address_tab()
-        self.addr.enter_foreign_master_vendor_address("Remit", "DEU")
+        self.addr.clean_canadian_address()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ FOREIGN CORPORATE INFORMATION """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_foreign_master_vendor_address("Corporate Info", "DEU")
-        self.addr.expand_alternate_names()
-        self.addr.enter_pmnt_alt_name_1()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
-
-        """ FOREIGN TRILOGIE PO ADDRESS """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_foreign_master_vendor_address("Trilogie PO Address", "DEU")
-        self.addr.enter_pmnt_alt_name_1()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
+        # """ FOREIGN CORPORATE INFORMATION """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.clean_french_address()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
+        #
+        # """ FOREIGN TRILOGIE PO ADDRESS """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.clean_argentine_address()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
 
         """ ADD LOCATIONS AND BRANCH VENDORS """
         """ Add a LOC_1 """
