@@ -41,7 +41,7 @@ class AddressPage(BasePage):
     _summary_tab = "//a//span[contains(text(), 'ummary')]"  # XPATH
     _identifying_info_tab = "//a//span[contains(text(), 'dentifying Information')]"  # XPATH
     _contacts_tab = "//a//span[contains(text(), 'ontacts')]"  # XPATH
-    _location_tab = "//span[contains(text(), 'ocation')]"  # XPATH
+    _location_tab = "//span[text() = 'ocation']"  # XPATH
     _custom_tab = "//a//span[contains(text(), 'C')]"  # XPATH
     _supplier_name = "VENDOR_NAME1"
     _description_field = "VNDR_ADDR_SCROL_DESCR$0"
