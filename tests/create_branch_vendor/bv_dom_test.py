@@ -42,7 +42,7 @@ class TestDomesticBV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))  # Login into PeopleSoft with CREATOR credentials
+    @data(("AUTOTEST3", "Psoft1234$"))  # Login into PeopleSoft with CREATOR credentials
     @unpack
     def test_domestic_master_and_branch_vendor_creation(self, username, password):
         self.lp.login(username, password)
