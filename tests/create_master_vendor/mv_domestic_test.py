@@ -34,14 +34,13 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.loc = LocationPage(self.driver)
         self.procurement = ProcurementOptionsWindow(self.driver)
 
-    # @pytest.mark.run(order=1)
-    # # @data((os.environ.get('CREATE_ROLE'), "wrongpassword"))
-    # @data(("AUTOTEST3", "wrongpassword"))
-    # @unpack
-    # def test_invalid_password(self, username, password):
-    #     self.lp.login(username, password)
-    #     result = self.lp.verify_login_failed()
-    #     self.ts.mark(result, "Login Failed!")
+    @pytest.mark.run(order=1)
+    @data((os.environ.get('CREATE_ROLE'), "wrongpassword"))
+    @unpack
+    def test_invalid_password(self, username, password):
+        self.lp.login(username, password)
+        result = self.lp.verify_login_failed()
+        self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
     @data((os.environ.get('CREATE_ROLE'), os.environ.get('TST10_PWD')))
