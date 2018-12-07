@@ -49,6 +49,8 @@ class SupplierXrefWindow(BasePage):
         time.sleep(1)
         self.click_supp_xref_ok_btn()
 
+        time.sleep(1)
+
     def select_one_account(self, acct_1):
         self.sendkeys(acct_1, self._trl_vendor_acct_field)
         self.sendkeys(Keys.TAB, self._trl_vendor_acct_field)
