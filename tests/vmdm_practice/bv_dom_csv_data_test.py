@@ -84,7 +84,7 @@ class TestDomesticBVWithCSVData(unittest.TestCase):
 
         # Add Procurement Options
         self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("COD")
+        self.procurement.select_payment_terms_id("COD")
 
         # Add Branch Vendor(s)
         self.loc.click_fei_trilogie_xref_link()

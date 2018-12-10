@@ -69,7 +69,7 @@ class TestCreateForeignMVCleanAddress(unittest.TestCase):
 
         # Add Procurement
         self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("COD")
+        self.procurement.select_payment_terms_id("COD")
 
         """ SAVE RECORD """
         self.loc.click_save_btn()

@@ -2,10 +2,10 @@ from base.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+import logging
 import random
 import time
 import utilities.custom_logger as cl
-import logging
 
 """ GLOBAL VARIABLES """
 VENDOR_ACCOUNTS = ["HOUSTONWW", "LAHVAC", "OHIOHVAC", "PLYMOUTH", "SACRAMENTO", "SANTAROSAWW"]

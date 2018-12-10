@@ -80,16 +80,16 @@ class TestCreateForeignMV(unittest.TestCase):
 
         # Add Procurement
         self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("COD")
+        self.procurement.select_random_payment_terms_id()
 
         """ SAVE RECORD """
-        self.loc.click_save_btn()
-        self.loc.click_summary_tab()
-
-        self.summary.get_supplier_id()
-
-        result2 = self.summary.verify_supplier_id_created()
-        self.ts.mark(result2, "Successfully Created Foreign Master Vendor.")
+        # self.loc.click_save_btn()
+        # self.loc.click_summary_tab()
+        #
+        # self.summary.get_supplier_id()
+        #
+        # result2 = self.summary.verify_supplier_id_created()
+        # self.ts.mark(result2, "Successfully Created Foreign Master Vendor.")
 
     @pytest.mark.run(order=3)
     def test_sign_out(self):
