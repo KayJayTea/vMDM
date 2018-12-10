@@ -68,7 +68,7 @@ class TestCreateDomesticMVCleanAddress(unittest.TestCase):
 
         # Add Procurement
         self.loc.click_procurement_link()
-        self.procurement.select_payment_terms_id("COD")
+        self.procurement.select_random_payment_terms_id()
 
         """ SAVE RECORD """
         self.loc.click_save_btn()

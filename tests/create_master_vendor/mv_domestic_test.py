@@ -65,18 +65,18 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.addr.enter_fax()
 
         """ CORPORATE INFORMATION """
-        # self.addr.click_add_new_address_btn()
-        # self.addr.clean_domestic_us_addresses()
-        # self.addr.enter_email_id()
-        # self.addr.enter_business_phone()
-        # self.addr.enter_fax()
+        self.addr.click_add_new_address_btn()
+        self.addr.clean_domestic_us_addresses()
+        self.addr.enter_email_id()
+        self.addr.enter_business_phone()
+        self.addr.enter_fax()
 
         """ TRILOGIE PO ADDRESS """
-        # self.addr.click_add_new_address_btn()
-        # self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
-        # self.addr.enter_email_id()
-        # self.addr.enter_business_phone()
-        # self.addr.enter_fax()
+        self.addr.click_add_new_address_btn()
+        self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
+        self.addr.enter_email_id()
+        self.addr.enter_business_phone()
+        self.addr.enter_fax()
 
         # Add a location
         self.addr.click_location_tab()
@@ -84,7 +84,7 @@ class TestCreateDomesticMV(unittest.TestCase):
 
         # Add Procurement
         self.loc.click_procurement_link()
-        self.procurement.select_payment_terms_id("COD")
+        self.procurement.select_random_payment_terms_id()
 
         # Save record
         self.loc.click_save_btn()
