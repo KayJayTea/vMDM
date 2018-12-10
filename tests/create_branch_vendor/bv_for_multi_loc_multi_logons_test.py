@@ -33,16 +33,16 @@ class TestForeignBVMultiLocationsMultiLogons(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
         self.sup_xref = SupplierXrefWindow(self.driver)
 
-    @pytest.mark.run(order=1)
-    @data(("AUTOTEST3", "wrongpassword"))
-    @unpack
-    def test_invalid_password(self, username, password):
-        self.lp.login(username, password)
-        result = self.lp.verify_login_failed()
-        self.ts.mark(result, "Login Failed!")
+    # @pytest.mark.run(order=1)
+    # @data(("AUTOTEST3", "wrongpassword"))
+    # @unpack
+    # def test_invalid_password(self, username, password):
+    #     self.lp.login(username, password)
+    #     result = self.lp.verify_login_failed()
+    #     self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_and_branch_vendor_creation_multi_loc_multi_logon(self, username, password):
         # Login into PeopleSoft with CREATOR credentials
@@ -56,7 +56,7 @@ class TestForeignBVMultiLocationsMultiLogons(unittest.TestCase):
 
         """ FOREIGN CORPORATE INFO ADDRESS """
         self.id_info.click_address_tab()
-        self.addr.clean_anguillian_address()
+        self.addr.clean_germany_address()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 

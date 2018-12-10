@@ -57,7 +57,7 @@ class TestForeignBV(unittest.TestCase):
 
         """ FOREIGN CORPORATE INFO ADDRESS """
         self.id_info.click_address_tab()
-        self.addr.clean_germany_address()
+        self.addr.clean_united_kingdom_address()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
@@ -82,7 +82,7 @@ class TestForeignBV(unittest.TestCase):
 
         # Add Procurement Options
         self.loc.click_procurement_link()
-        self.procurement.select_payment_terms_id("COD")
+        self.procurement.select_random_payment_terms_id()
 
         # Add Branch Vendor(s)
         self.loc.click_fei_trilogie_xref_link()

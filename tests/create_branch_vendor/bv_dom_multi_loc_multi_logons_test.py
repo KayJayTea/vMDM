@@ -63,7 +63,7 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
 
         """ CORPORATE INFORMATION """
         self.addr.click_add_new_address_btn()
-        self.addr.enter_domestic_master_vendor_address("Corporate Info")
+        self.addr.clean_domestic_us_addresses()
         self.addr.expand_alternate_names()
         self.addr.enter_pmnt_alt_name_1()
         self.addr.enter_business_phone()
