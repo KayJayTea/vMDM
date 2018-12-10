@@ -42,7 +42,7 @@ class TestForeignBV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_and_branch_vendor_creation(self, username, password):
         # Login into PeopleSoft with CREATOR credentials
@@ -55,16 +55,16 @@ class TestForeignBV(unittest.TestCase):
         self.sup_info_anv.click_add_button()
         self.id_info.input_identifying_info("DNS")
 
-        """ FOREIGN REMIT ADDRESS """
+        """ FOREIGN CORPORATE INFO ADDRESS """
         self.id_info.click_address_tab()
-        self.addr.enter_foreign_master_vendor_address("Remit", "GBR")
+        self.addr.clean_germany_address()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ FOREIGN CORPORATE INFORMATION """
+        """ FOREIGN REMIT ADDRESS """
         self.addr.click_add_new_address_btn()
-        self.addr.clean_united_kingdom_address()
+        self.addr.enter_foreign_master_vendor_address("Remit", "GBR")
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()

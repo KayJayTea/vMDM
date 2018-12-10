@@ -54,15 +54,15 @@ class TestForeignBVMultiLocationsMultiLogons(unittest.TestCase):
         self.sup_info_anv.click_add_button()
         self.id_info.input_identifying_info("DNS")
 
-        """ FOREIGN REMIT ADDRESS """
+        """ FOREIGN CORPORATE INFO ADDRESS """
         self.id_info.click_address_tab()
-        self.addr.enter_foreign_master_vendor_address("Remit", "DEU")
+        self.addr.clean_anguillian_address()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ FOREIGN CORPORATE INFORMATION """
+        """ FOREIGN REMIT INFORMATION """
         self.addr.click_add_new_address_btn()
-        self.addr.enter_foreign_master_vendor_address("Corporate Info", "DEU")
+        self.addr.enter_foreign_master_vendor_address("Remit", "DEU")
         self.addr.expand_alternate_names()
         self.addr.enter_pmnt_alt_name_1()
         self.addr.enter_business_phone()
