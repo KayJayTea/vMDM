@@ -55,24 +55,24 @@ class TestCreateForeignMV(unittest.TestCase):
 
         """ FOREIGN CORPORATE INFORMATION """
         self.id_info.click_address_tab()
-        self.addr.clean_germany_address()
+        self.addr.clean_anguillian_address()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ FOREIGN REMIT Address """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_foreign_master_vendor_address("Remit", "DEU")
-        self.addr.enter_email_id()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
-
-        """ FOREIGN TRILOGIE PO ADDRESS """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_foreign_master_vendor_address("Trilogie PO Address", "DEU")
-        self.addr.enter_email_id()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
+        # """ FOREIGN REMIT Address """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.enter_foreign_master_vendor_address("Remit", "DEU")
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
+        #
+        # """ FOREIGN TRILOGIE PO ADDRESS """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.enter_foreign_master_vendor_address("Trilogie PO Address", "DEU")
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
 
         """ ADD LOCATIONS """
         self.addr.click_location_tab()
