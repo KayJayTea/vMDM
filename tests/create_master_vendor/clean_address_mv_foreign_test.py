@@ -56,7 +56,7 @@ class TestCreateForeignMVCleanAddress(unittest.TestCase):
         self.id_info.click_address_tab()
 
         """ SELECT COUNTRY """
-        self.addr.clean_virgin_islands_british_address()
+        self.addr.clean_anguillian_address()
         """ SELECT COUNTRY """
 
         self.addr.enter_email_id()
@@ -69,7 +69,7 @@ class TestCreateForeignMVCleanAddress(unittest.TestCase):
 
         # Add Procurement
         self.loc.click_procurement_link()
-        self.procurement.select_payment_terms_id("COD")
+        self.procurement.select_random_payment_terms_id()
 
         """ SAVE RECORD """
         self.loc.click_save_btn()
