@@ -74,7 +74,7 @@ class IdentifyingInformationPage(BasePage):
         self.util.sleep(2, "the Address page to open.")
 
     """ THE MODULE THAT GETS CALLED BY THE TEST """
-    def input_identifying_info(self, id_type):
+    def enter_identifying_info(self, id_type):
         self.enter_supplier_name()
         self.enter_supplier_short_name()
 
