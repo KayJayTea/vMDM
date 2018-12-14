@@ -57,7 +57,7 @@ class TestCreateForeignMV(unittest.TestCase):
 
         """ FOREIGN CORPORATE INFORMATION """
         self.id_info.click_address_tab()
-        self.addr.clean_british_indian_ocean_territory_address()
+        self.addr.clean_china_address()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()

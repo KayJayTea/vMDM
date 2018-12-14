@@ -99,7 +99,7 @@ class LocationPage(BasePage):
     def click_save_btn(self):
         self.element_click(self._save_button)
 
-        time.sleep(10)
+        time.sleep(5)
 
         self.driver.switch_to.default_content()
         warning_msg = self.is_element_present("//div[contains(@id, 'ptModTable_')]", "xpath")
