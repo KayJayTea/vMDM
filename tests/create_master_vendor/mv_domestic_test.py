@@ -36,7 +36,7 @@ class TestCreateDomesticMV(unittest.TestCase):
 
     @pytest.mark.run(order=1)
     # @data((os.environ.get('CREATE_ROLE'), "wrongpassword"))
-    @data(("AAO8676", "wrongpassword"))
+    @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
         self.lp.login(username, password)
@@ -45,7 +45,7 @@ class TestCreateDomesticMV(unittest.TestCase):
 
     @pytest.mark.run(order=2)
     # @data((os.environ.get('CREATE_ROLE'), os.environ.get('TST10_PWD')))
-    @data(("AAO8676", "0413!((^KPt1!"))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_vendor_creation(self, username, password):
         self.lp.login(username, password)

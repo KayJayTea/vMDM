@@ -34,6 +34,7 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
         self.sup_xref = SupplierXrefWindow(self.driver)
 
     @pytest.mark.run(order=1)
+    # @data((os.environ.get('CREATE_ROLE'), "wrongpassword"))
     @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
@@ -42,7 +43,8 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    # @data((os.environ.get('CREATE_ROLE'), os.environ.get('TST10_PWD')))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_and_branch_vendor_creation_multi_loc_multi_logon(self, username, password):
         # Login into PeopleSoft with CREATOR credentials

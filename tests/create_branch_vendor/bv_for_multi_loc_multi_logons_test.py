@@ -33,15 +33,17 @@ class TestForeignBVMultiLocationsMultiLogons(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
         self.sup_xref = SupplierXrefWindow(self.driver)
 
-    # @pytest.mark.run(order=1)
-    # @data(("AUTOTEST3", "wrongpassword"))
-    # @unpack
-    # def test_invalid_password(self, username, password):
-    #     self.lp.login(username, password)
-    #     result = self.lp.verify_login_failed()
-    #     self.ts.mark(result, "Login Failed!")
+    @pytest.mark.run(order=1)
+    # @data((os.environ.get('CREATE_ROLE'), "wrongpassword"))
+    @data(("AUTOTEST3", "wrongpassword"))
+    @unpack
+    def test_invalid_password(self, username, password):
+        self.lp.login(username, password)
+        result = self.lp.verify_login_failed()
+        self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
+    # @data((os.environ.get('CREATE_ROLE'), os.environ.get('TST10_PWD')))
     @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_and_branch_vendor_creation_multi_loc_multi_logon(self, username, password):
