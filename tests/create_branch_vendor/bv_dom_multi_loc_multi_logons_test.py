@@ -43,7 +43,7 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
     #     self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    # @data((os.environ.get('CREATE_ROLE'), os.environ.get('TST10_PWD')))
+    # @data((os.environ.get('DEV_10_USER'), os.environ.get('DEV_10_PWD')))
     @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_and_branch_vendor_creation_multi_loc_multi_logon(self, username, password):
@@ -60,21 +60,21 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
         """ REMIT ADDRESS """
         self.id_info.click_address_tab()
         self.addr.enter_domestic_master_vendor_address("Remit")
+        self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
         """ CORPORATE INFORMATION """
         self.addr.click_add_new_address_btn()
         self.addr.clean_domestic_us_addresses()
-        self.addr.expand_alternate_names()
-        self.addr.enter_pmnt_alt_name_1()
+        self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
         """ TRILOGIE PO ADDRESS """
         self.addr.click_add_new_address_btn()
         self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
-        self.addr.enter_pmnt_alt_name_1()
+        self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
