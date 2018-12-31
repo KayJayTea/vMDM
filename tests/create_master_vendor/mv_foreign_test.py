@@ -8,7 +8,7 @@ from pages.address_page import AddressPage
 from pages.location_page import LocationPage
 from popup_windows.procurement_options_window import ProcurementOptionsWindow
 from utilities.tests_status import TestStatus
-
+import os
 import pytest
 import unittest
 from ddt import ddt, data, unpack
@@ -32,8 +32,8 @@ class TestCreateForeignMV(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
 
     @pytest.mark.run(order=1)
-    # @data((os.environ.get('CREATE_ROLE'), "wrongpassword"))
-    @data(("AUTOTEST3", "wrongpassword"))
+    @data((os.environ.get('DEV_10_USER'), "wrongpassword"))
+    # @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
         self.lp.login(username, password)
@@ -41,8 +41,8 @@ class TestCreateForeignMV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    # @data((os.environ.get('CREATE_ROLE'), os.environ.get('TST10_PWD')))
-    @data(("AUTOTEST3", "Psoft1234$"))
+    @data((os.environ.get('DEV_10_USER'), os.environ.get('DEV_10_PWD')))
+    # @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_vendor_creation(self, username, password):
 
@@ -57,7 +57,7 @@ class TestCreateForeignMV(unittest.TestCase):
 
         """ FOREIGN CORPORATE INFORMATION """
         self.id_info.click_address_tab()
-        self.addr.clean_china_address()
+        self.addr.clean_spain_address()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
