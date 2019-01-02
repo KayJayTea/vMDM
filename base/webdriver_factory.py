@@ -38,9 +38,9 @@ class WebDriverFactory:
         Returns:
             'WebDriver Instance'
         """
+        # base_url = "http://a06543.sys.ds.wolseley.com:3043/psp/fusdev10/"  # FUSDEV10
         # base_url = "http://a06615.sys.ds.wolseley.com:3050/psp/fustst00/"  # FUSTST00
         # base_url = "http://a06615.sys.ds.wolseley.com:3052/psc/fustst10/"  # FUSTST10
-        # base_url = "http://a06543.sys.ds.wolseley.com:3043/psp/fusdev10/"  # FUSDEV10
         base_url = "http://a06617.sys.ds.wolseley.com:3061/psp/fusuat10/"  # FUSUAT10
 
         if self.browser == "iexplorer":
