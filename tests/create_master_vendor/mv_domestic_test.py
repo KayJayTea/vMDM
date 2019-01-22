@@ -35,8 +35,8 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
 
     @pytest.mark.run(order=1)
-    # @data((os.environ.get('CREATE_ROLE'), "wrongpassword"))
-    @data(("AUTOTEST3", "wrongpassword"))
+    @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
+    # @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
         self.lp.login(username, password)
@@ -44,8 +44,8 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    # @data((os.environ.get('CREATE_ROLE'), os.environ.get('TST10_PWD')))
-    @data(("AUTOTEST3", "Psoft1234$"))
+    @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
+    # @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_vendor_creation(self, username, password):
         self.lp.login(username, password)
@@ -57,17 +57,18 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.sup_info_anv.click_add_button()
         self.id_info.enter_identifying_info("DNS")
 
-        """ REMIT Address """
+        """ CORPORATE INFO """
         self.id_info.click_address_tab()
-        self.addr.enter_domestic_master_vendor_address("Remit")
+        self.addr.clean_domestic_us_addresses()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ CORPORATE INFORMATION """
+        """ REMIT """
         self.addr.click_add_new_address_btn()
-        self.addr.clean_domestic_us_addresses()
+        self.addr.enter_domestic_master_vendor_address("Remit")
         self.addr.enter_email_id()
+        self.addr.click_override_address_verification_chkbx()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
@@ -75,6 +76,7 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.addr.click_add_new_address_btn()
         self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
         self.addr.enter_email_id()
+        self.addr.click_override_address_verification_chkbx()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 

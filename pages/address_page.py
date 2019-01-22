@@ -212,7 +212,6 @@ class AddressPage(BasePage):
 
     def enter_domestic_master_vendor_address(self, sam_type):
         self.select_sam_address_type(sam_type)
-        self.click_override_address_verification_chkbx()
         self.enter_address_one()
         self.enter_address_two()
         self.enter_city()

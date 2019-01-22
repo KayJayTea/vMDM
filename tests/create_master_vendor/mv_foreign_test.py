@@ -32,7 +32,7 @@ class TestCreateForeignMV(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
 
     @pytest.mark.run(order=1)
-    @data((os.environ.get('DEV_10_USER'), "wrongpassword"))
+    @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
     # @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
@@ -41,7 +41,7 @@ class TestCreateForeignMV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data((os.environ.get('DEV_10_USER'), os.environ.get('DEV_10_PWD')))
+    @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
     # @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_vendor_creation(self, username, password):
@@ -62,19 +62,19 @@ class TestCreateForeignMV(unittest.TestCase):
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        # """ FOREIGN REMIT Address """
-        # self.addr.click_add_new_address_btn()
-        # self.addr.enter_foreign_master_vendor_address("Remit", "AIA")
-        # self.addr.enter_email_id()
-        # self.addr.enter_business_phone()
-        # self.addr.enter_fax()
-        #
-        # """ FOREIGN TRILOGIE PO ADDRESS """
-        # self.addr.click_add_new_address_btn()
-        # self.addr.enter_foreign_master_vendor_address("Trilogie PO Address", "AIA")
-        # self.addr.enter_email_id()
-        # self.addr.enter_business_phone()
-        # self.addr.enter_fax()
+        """ FOREIGN REMIT ADDRESS """
+        self.addr.click_add_new_address_btn()
+        self.addr.enter_foreign_master_vendor_address("Remit", "AIA")
+        self.addr.enter_email_id()
+        self.addr.enter_business_phone()
+        self.addr.enter_fax()
+
+        """ FOREIGN TRILOGIE PO ADDRESS """
+        self.addr.click_add_new_address_btn()
+        self.addr.enter_foreign_master_vendor_address("Trilogie PO Address", "AIA")
+        self.addr.enter_email_id()
+        self.addr.enter_business_phone()
+        self.addr.enter_fax()
 
         """ ADD LOCATIONS """
         self.addr.click_location_tab()

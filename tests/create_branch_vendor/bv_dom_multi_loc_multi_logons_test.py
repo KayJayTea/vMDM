@@ -33,17 +33,17 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
         self.sup_xref = SupplierXrefWindow(self.driver)
 
-    # @pytest.mark.run(order=1)
-    # # @data((os.environ.get('CREATE_ROLE'), "wrongpassword"))
-    # @data(("AUTOTEST3", "wrongpassword"))
-    # @unpack
-    # def test_invalid_password(self, username, password):
-    #     self.lp.login(username, password)
-    #     result = self.lp.verify_login_failed()
-    #     self.ts.mark(result, "Login Failed!")
+    @pytest.mark.run(order=1)
+    # @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
+    @data(("AUTOTEST3", "wrongpassword"))
+    @unpack
+    def test_invalid_password(self, username, password):
+        self.lp.login(username, password)
+        result = self.lp.verify_login_failed()
+        self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    # @data((os.environ.get('DEV_10_USER'), os.environ.get('DEV_10_PWD')))
+    # @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
     @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_and_branch_vendor_creation_multi_loc_multi_logon(self, username, password):
@@ -57,16 +57,16 @@ class TestDomesticBVMultiLocationsMultiLogons(unittest.TestCase):
         self.sup_info_anv.click_add_button()
         self.id_info.enter_identifying_info("DNS")
 
-        """ REMIT ADDRESS """
+        """ CORPORATE INFORMATION """
         self.id_info.click_address_tab()
-        self.addr.enter_domestic_master_vendor_address("Remit")
+        self.addr.clean_domestic_us_addresses()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ CORPORATE INFORMATION """
+        """ REMIT ADDRESS """
         self.addr.click_add_new_address_btn()
-        self.addr.clean_domestic_us_addresses()
+        self.addr.enter_domestic_master_vendor_address("Remit")
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()

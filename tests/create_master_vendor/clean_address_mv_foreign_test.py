@@ -32,7 +32,7 @@ class TestCreateForeignMVCleanAddress(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
 
     @pytest.mark.run(order=1)
-    # @data((os.environ.get('CREATE_ROLE'), "wrongpassword"))
+    # @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
     @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
@@ -41,7 +41,7 @@ class TestCreateForeignMVCleanAddress(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    # @data((os.environ.get('CREATE_ROLE'), os.environ.get('TST10_PWD')))
+    # @data((os.environ.get('PSFT_USER_PWD'), os.environ.get('PSFT_USER_ID')))
     @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_vendor_creation(self, username, password):
