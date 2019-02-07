@@ -8,6 +8,7 @@ from pages.address_page import AddressPage
 from pages.location_page import LocationPage
 from popup_windows.procurement_options_window import ProcurementOptionsWindow
 from utilities.tests_status import TestStatus
+import os
 
 import pytest
 import unittest
@@ -32,7 +33,8 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
 
     @pytest.mark.run(order=1)
-    @data(("AUTOTEST3", "wrongpassword"))
+    @data((os.environ.get('PSFT_USER_ID'), "AAJH05*"))
+    # @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
         self.lp.login(username, password)
@@ -40,7 +42,8 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234$"))
+    @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
+    # @data(("AUTOTEST3", "Psoft1234!"))
     @unpack
     def test_domestic_master_vendor_creation(self, username, password):
 
