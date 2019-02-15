@@ -317,10 +317,10 @@ class AddressPage(BasePage):
 
     """ CLEAN ADDRESSES """
     def clean_domestic_us_addresses(self, desc_text="UNITED STATES", sam_type="Corporate Info",
-                                    address_1="Ferguson Showroom, Newport News",
-                                    address_2="12470 Jefferson Avenue",
-                                    city="Newport News",
-                                    postal="23602"):
+                                    address_1="The Westin New Orleans Canal Place",
+                                    address_2="100 Rue Iberville",
+                                    city="New Orleans",
+                                    postal="70130"):
         self.clear_element(self._description_field)
         self.ca_enter_description(desc_text)
         self.select_sam_address_type(sam_type)

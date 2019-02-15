@@ -35,8 +35,8 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
 
     @pytest.mark.run(order=1)
-    @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
-    # @data(("AUTOTEST3", "wrongpassword"))
+    # @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
+    @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
         self.lp.login(username, password)
@@ -44,8 +44,8 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
-    # @data(("AUTOTEST3", "Psoft1234$"))
+    # @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_vendor_creation(self, username, password):
         self.lp.login(username, password)
@@ -64,21 +64,21 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ REMIT """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_domestic_master_vendor_address("Remit")
-        self.addr.enter_email_id()
-        self.addr.click_override_address_verification_chkbx()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
-
-        """ TRILOGIE PO ADDRESS """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
-        self.addr.enter_email_id()
-        self.addr.click_override_address_verification_chkbx()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
+        # """ REMIT """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.click_override_address_verification_chkbx()
+        # self.addr.enter_domestic_master_vendor_address("Remit")
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
+        #
+        # """ TRILOGIE PO ADDRESS """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.click_override_address_verification_chkbx()
+        # self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
 
         # Add a location
         self.addr.click_location_tab()
