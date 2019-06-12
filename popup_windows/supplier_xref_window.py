@@ -2,10 +2,10 @@ from base.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+import logging
 import random
 import time
 import utilities.custom_logger as cl
-import logging
 
 """ GLOBAL VARIABLES """
 VENDOR_ACCOUNTS = ["HOUSTONWW", "LAHVAC", "OHIOHVAC", "PLYMOUTH", "SACRAMENTO", "SANTAROSAWW"]
@@ -48,6 +48,8 @@ class SupplierXrefWindow(BasePage):
         self.sendkeys(Keys.TAB, self._trl_vendor_acct_field)
         time.sleep(1)
         self.click_supp_xref_ok_btn()
+
+        time.sleep(1)
 
     def select_one_account(self, acct_1):
         self.sendkeys(acct_1, self._trl_vendor_acct_field)

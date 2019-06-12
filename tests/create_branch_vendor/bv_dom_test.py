@@ -10,6 +10,7 @@ from popup_windows.procurement_options_window import ProcurementOptionsWindow
 from popup_windows.supplier_xref_window import SupplierXrefWindow
 from utilities.tests_status import TestStatus
 
+import os
 import pytest
 import unittest
 from ddt import ddt, data, unpack
@@ -34,6 +35,7 @@ class TestDomesticBV(unittest.TestCase):
         self.sup_xref = SupplierXrefWindow(self.driver)
 
     @pytest.mark.run(order=1)
+    # @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
     @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
@@ -42,7 +44,8 @@ class TestDomesticBV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))  # Login into PeopleSoft with CREATOR credentials
+    # @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_and_branch_vendor_creation(self, username, password):
         self.lp.login(username, password)
@@ -52,26 +55,29 @@ class TestDomesticBV(unittest.TestCase):
         self.nav.navigate_to_supplier_info()
         self.sup_info_fev.add_a_new_value()
         self.sup_info_anv.click_add_button()
-        self.id_info.input_identifying_info("DNS")
+        self.id_info.enter_identifying_info("DNS")
 
-        """ REMIT ADDRESS """
+        """ CORPORATE INFORMATION """
         self.id_info.click_address_tab()
-        self.addr.enter_domestic_master_vendor_address("Remit")
+        self.addr.clean_domestic_us_addresses()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ CORPORATE INFORMATION """
+        """ REMIT ADDRESS """
         self.addr.click_add_new_address_btn()
-        self.addr.clean_domestic_us_addresses()
+        self.addr.click_override_address_verification_chkbx()
+        self.addr.enter_domestic_master_vendor_address("Remit")
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
         """ TRILOGIE PO ADDRESS """
         self.addr.click_add_new_address_btn()
+        self.addr.click_override_address_verification_chkbx()
         self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
         self.addr.enter_email_id()
+        self.addr.click_override_address_verification_chkbx()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
@@ -82,11 +88,11 @@ class TestDomesticBV(unittest.TestCase):
 
         # Add Procurement Options
         self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("COD")
+        self.procurement.select_random_payment_terms_id()
 
         # Add Branch Vendor(s)
         self.loc.click_fei_trilogie_xref_link()
-        self.sup_xref.select_all_accounts()
+        self.sup_xref.select_one_account("HOUSTONWW")
 
         """ SAVE RECORD """
         self.loc.click_save_btn()

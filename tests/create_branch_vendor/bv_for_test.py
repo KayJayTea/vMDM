@@ -34,6 +34,7 @@ class TestForeignBV(unittest.TestCase):
         self.sup_xref = SupplierXrefWindow(self.driver)
 
     @pytest.mark.run(order=1)
+    # @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
     @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
@@ -42,7 +43,8 @@ class TestForeignBV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    # @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_foreign_master_and_branch_vendor_creation(self, username, password):
         # Login into PeopleSoft with CREATOR credentials
@@ -53,18 +55,18 @@ class TestForeignBV(unittest.TestCase):
         self.nav.navigate_to_supplier_info()
         self.sup_info_fev.add_a_new_value()
         self.sup_info_anv.click_add_button()
-        self.id_info.input_identifying_info("DNS")
+        self.id_info.enter_identifying_info("DNS")
 
-        """ FOREIGN REMIT ADDRESS """
+        """ FOREIGN CORPORATE INFO ADDRESS """
         self.id_info.click_address_tab()
-        self.addr.enter_foreign_master_vendor_address("Remit", "GBR")
+        self.addr.clean_united_kingdom_address()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ FOREIGN CORPORATE INFORMATION """
+        """ FOREIGN REMIT ADDRESS """
         self.addr.click_add_new_address_btn()
-        self.addr.clean_united_kingdom_address()
+        self.addr.enter_foreign_master_vendor_address("Remit", "GBR")
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
@@ -82,7 +84,7 @@ class TestForeignBV(unittest.TestCase):
 
         # Add Procurement Options
         self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("COD")
+        self.procurement.select_random_payment_terms_id()
 
         # Add Branch Vendor(s)
         self.loc.click_fei_trilogie_xref_link()

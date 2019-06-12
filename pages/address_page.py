@@ -41,7 +41,7 @@ class AddressPage(BasePage):
     _summary_tab = "//a//span[contains(text(), 'ummary')]"  # XPATH
     _identifying_info_tab = "//a//span[contains(text(), 'dentifying Information')]"  # XPATH
     _contacts_tab = "//a//span[contains(text(), 'ontacts')]"  # XPATH
-    _location_tab = "//span[contains(text(), 'ocation')]"  # XPATH
+    _location_tab = "//span[text() = 'ocation']"  # XPATH
     _custom_tab = "//a//span[contains(text(), 'C')]"  # XPATH
     _supplier_name = "VENDOR_NAME1"
     _description_field = "VNDR_ADDR_SCROL_DESCR$0"
@@ -212,7 +212,6 @@ class AddressPage(BasePage):
 
     def enter_domestic_master_vendor_address(self, sam_type):
         self.select_sam_address_type(sam_type)
-        self.click_override_address_verification_chkbx()
         self.enter_address_one()
         self.enter_address_two()
         self.enter_city()
@@ -269,6 +268,9 @@ class AddressPage(BasePage):
     def ca_enter_area(self, area):
         self.sendkeys(area, self._county)
 
+    def ca_enter_district(self, district):
+        self.sendkeys(district, self._city)
+
     def ca_enter_neighborhood(self, neighborhood):
         self.sendkeys(neighborhood, self._country)
 
@@ -315,10 +317,10 @@ class AddressPage(BasePage):
 
     """ CLEAN ADDRESSES """
     def clean_domestic_us_addresses(self, desc_text="UNITED STATES", sam_type="Corporate Info",
-                                    address_1="Ferguson Showroom, Newport News",
-                                    address_2="12470 Jefferson Avenue",
-                                    city="Newport News",
-                                    postal="23602"):
+                                    address_1="The Westin New Orleans Canal Place",
+                                    address_2="100 Rue Iberville",
+                                    city="New Orleans",
+                                    postal="70130"):
         self.clear_element(self._description_field)
         self.ca_enter_description(desc_text)
         self.select_sam_address_type(sam_type)
@@ -349,7 +351,7 @@ class AddressPage(BasePage):
     def clean_argentine_address(self, desc_text="ARGENTINA", sam_type="Corporate Info",
                                 country_code="ARG",
                                 address_1="Avenida Leandro",
-                                address_2=" N. Alem 1193",
+                                address_2="N. Alem 1193",
                                 city="Bueno Aires",
                                 postal="1001",
                                 state="BA"):
@@ -440,7 +442,7 @@ class AddressPage(BasePage):
                                 address_2="58",
                                 city="Barra de Sao Miguel",
                                 neighborhood="Barra mar", postal="57180-000",
-                                state="PR"):
+                                state="AL"):
         self.clear_element(self._description_field)
         self.ca_enter_description(desc_text)
         self.select_sam_address_type(sam_type)
@@ -584,6 +586,7 @@ class AddressPage(BasePage):
                                 country_code="HKG",
                                 address_1="International Commerce Center",
                                 address_2="No. 1 Austin Road West",
+                                district="Kowloon",
                                 area="Kowloon"):
         self.clear_element(self._description_field)
         self.ca_enter_description(desc_text)
@@ -592,6 +595,7 @@ class AddressPage(BasePage):
         self.enter_country_code(country_code)
         self.ca_enter_address_one(address_1)
         self.ca_enter_address_two(address_2)
+        self.ca_enter_district(district)
         self.ca_enter_area(area)
 
     """ ISRAEL """
@@ -651,6 +655,7 @@ class AddressPage(BasePage):
         self.ca_enter_city(city)
         self.ca_enter_postal(postal)
 
+        self.clear_state_field()  # Clear Prefecture field
         self.search_for_prefecture()
         sel_pref = LookUpStateWindow(self.driver)
         sel_pref.select_state(prefecture)
@@ -682,7 +687,7 @@ class AddressPage(BasePage):
                               country_code="MEX",
                               street_and_num_1="Mission De Los Lagos 9020",
                               street_and_num_2="Partido Iglesias",
-                              municipality="Ciudad",
+                              colony="Ciudad",
                               city="Juarez",
                               post_code="32688",
                               state="CHIH"):
@@ -693,7 +698,7 @@ class AddressPage(BasePage):
         self.enter_country_code(country_code)
         self.ca_enter_address_one(street_and_num_1)
         self.ca_enter_address_two(street_and_num_2)
-        self.ca_enter_address_four(municipality)
+        self.ca_enter_address_three(colony)
         self.ca_enter_city(city)
         self.ca_enter_postal_code(post_code)
 
@@ -750,7 +755,7 @@ class AddressPage(BasePage):
                              country_code="PAN",
                              address_1="La Rotunda Avenue",
                              address_2="Costa del Este",
-                             city="US State ",
+                             city="Panama",
                              postal="1001"):
         self.clear_element(self._description_field)
         self.ca_enter_description(desc_text)
@@ -784,7 +789,7 @@ class AddressPage(BasePage):
                                country_code="PRT",
                                address_1="Rua das Palmeiras",
                                address_2="Lote 5 Quinta da Marinha",
-                               city="Cascais, Portugal ",
+                               city="Cascais",
                                postal="2750-005"):
         self.clear_element(self._description_field)
         self.ca_enter_description(desc_text)
@@ -800,7 +805,7 @@ class AddressPage(BasePage):
     def clean_singapore_address(self, desc_text="SINGAPORE", sam_type="Corporate Info",
                                 country_code="SGP",
                                 address_1="Courtyard Singapore Novena",
-                                address_2="99 Irrawaddy Road, Novena",
+                                address_2="99 Irrawaddy Road",
                                 postal="329568"):
         self.clear_element(self._description_field)
         self.ca_enter_description(desc_text)

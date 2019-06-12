@@ -8,7 +8,9 @@ from pages.address_page import AddressPage
 from pages.location_page import LocationPage
 from popup_windows.procurement_options_window import ProcurementOptionsWindow
 from utilities.tests_status import TestStatus
+from utilities.get_pass import GetPassWarning
 
+import os
 import pytest
 import unittest
 from ddt import ddt, data, unpack
@@ -21,6 +23,7 @@ class TestCreateDomesticMV(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def class_setup(self):
         self.ts = TestStatus(self.driver)
+        self.get_pass = GetPassWarning(self.driver)
         self.lp = LoginPage(self.driver)
         self.nav = NavigatePage(self.driver)
         self.sup_info_fev = FindExistingValuePage(self.driver)
@@ -32,6 +35,7 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
 
     @pytest.mark.run(order=1)
+    # @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
     @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
@@ -40,10 +44,10 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    # @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_vendor_creation(self, username, password):
-        # Login into PeopleSoft with CREATOR credentials
         self.lp.login(username, password)
         result_1 = self.lp.verify_title()
         self.ts.mark(result_1, "Title is CORRECT")
@@ -51,28 +55,30 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.nav.navigate_to_supplier_info()
         self.sup_info_fev.add_a_new_value()
         self.sup_info_anv.click_add_button()
-        self.id_info.input_identifying_info("DNS")
+        self.id_info.enter_identifying_info("DNS")
 
-        """ CORPORATE INFORMATION """
+        """ CORPORATE INFO """
         self.id_info.click_address_tab()
         self.addr.clean_domestic_us_addresses()
         self.addr.enter_email_id()
         self.addr.enter_business_phone()
         self.addr.enter_fax()
 
-        """ REMIT Address """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_domestic_master_vendor_address("Remit")
-        self.addr.enter_email_id()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
-
-        """ TRILOGIE PO ADDRESS """
-        self.addr.click_add_new_address_btn()
-        self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
-        self.addr.enter_email_id()
-        self.addr.enter_business_phone()
-        self.addr.enter_fax()
+        # """ REMIT """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.click_override_address_verification_chkbx()
+        # self.addr.enter_domestic_master_vendor_address("Remit")
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
+        #
+        # """ TRILOGIE PO ADDRESS """
+        # self.addr.click_add_new_address_btn()
+        # self.addr.click_override_address_verification_chkbx()
+        # self.addr.enter_domestic_master_vendor_address("Trilogie PO Address")
+        # self.addr.enter_email_id()
+        # self.addr.enter_business_phone()
+        # self.addr.enter_fax()
 
         # Add a location
         self.addr.click_location_tab()
@@ -80,7 +86,7 @@ class TestCreateDomesticMV(unittest.TestCase):
 
         # Add Procurement
         self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("COD")
+        self.procurement.select_random_payment_terms_id()
 
         # Save record
         self.loc.click_save_btn()

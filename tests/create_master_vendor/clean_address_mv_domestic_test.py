@@ -32,15 +32,17 @@ class TestCreateDomesticMVCleanAddress(unittest.TestCase):
         self.procurement = ProcurementOptionsWindow(self.driver)
 
     @pytest.mark.run(order=1)
+    # @data((os.environ.get('PSFT_USER_ID'), "wrongpassword"))
     @data(("AUTOTEST3", "wrongpassword"))
     @unpack
     def test_invalid_password(self, username, password):
         self.lp.login(username, password)
         result = self.lp.verify_login_failed()
-        self.ts.mark(result, "Verified Login Failed!")
+        self.ts.mark(result, "Login Failed!")
 
     @pytest.mark.run(order=2)
-    @data(("AUTOTEST3", "Psoft1234!"))
+    # @data((os.environ.get('PSFT_USER_ID'), os.environ.get('PSFT_USER_PWD')))
+    @data(("AUTOTEST3", "Psoft1234$"))
     @unpack
     def test_domestic_master_vendor_creation(self, username, password):
 
@@ -51,7 +53,7 @@ class TestCreateDomesticMVCleanAddress(unittest.TestCase):
         self.nav.navigate_to_supplier_info()
         self.sup_info_fev.add_a_new_value()
         self.sup_info_anv.click_add_button()
-        self.id_info.input_identifying_info("DNS")
+        self.id_info.enter_identifying_info("DNS")
 
         """ DOMESTIC REMIT CleanAddress """
         self.id_info.click_address_tab()
@@ -68,7 +70,7 @@ class TestCreateDomesticMVCleanAddress(unittest.TestCase):
 
         # Add Procurement
         self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("COD")
+        self.procurement.select_random_payment_terms_id()
 
         """ SAVE RECORD """
         self.loc.click_save_btn()

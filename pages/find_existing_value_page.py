@@ -35,7 +35,7 @@ class FindExistingValuePage(BasePage):
         self.element_click(self._add_new_value_tab)
 
     def add_a_new_value(self):
-        self.driver.switch_to_frame("ptifrmtgtframe")
+        self.driver.switch_to.frame("ptifrmtgtframe")
         self.util.sleep(1, "the active window to be recognized by the app.")
         self.click_add_new_value_tab()
 

@@ -45,7 +45,7 @@ class TestCreateDomesticMV(unittest.TestCase):
         self.nav.navigate_to_supplier_info()
         self.sup_info_fev.add_a_new_value()
         self.sup_info_anv.click_add_button()
-        self.id_info.input_identifying_info("DNS")
+        self.id_info.enter_identifying_info("DNS")
 
         """ REMIT CleanAddressPage """
         self.id_info.click_address_tab()
@@ -74,7 +74,7 @@ class TestCreateDomesticMV(unittest.TestCase):
 
         # Add Procurement
         self.loc.click_procurement_link()
-        self.procurement.enter_additional_procurement_options("COD")
+        self.procurement.select_payment_terms_id("COD")
 
         # Save record
         self.loc.click_save_btn()
